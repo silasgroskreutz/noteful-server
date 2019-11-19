@@ -20,10 +20,6 @@ app.use(cors())
 app.use('/api/folders',foldersRouter);
 app.use('/api/notes',NotesRouter);
 
-app.get('/', (req, res) => {
-    res.send('Hello, world!')
-})
-
 app.use(function validateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN
   const authToken = req.get('Authorization')
