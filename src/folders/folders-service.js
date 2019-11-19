@@ -1,31 +1,39 @@
-const FoldersService={
-  getAllFolders(knex){
-    return knex.select('*').from('folders');
-  },
-  getById(knex,id){
-    return knex.from('folders').where('id',id).first();
+const FoldersService = {
+  getAllFolders(knex) {
+    return knex.select('*').from('noteful_folders')
   },
 
-  insertFolder(knex,newFolder){
+  insertFolder(knex, newFolder) {
     return knex
       .insert(newFolder)
-      .into('folders')
+      .into('noteful_folders')
       .returning('*')
       .then(rows => {
-        return rows[0];});
+        console.log('rows', rows)
+        return rows[0]
+      });
   },
 
-  deleteFolder(knex,id){
-    return knex('folders')
-      .where({id})
-      .delete();
+  getById(knex, folder_id) {
+    return knex
+      .from('noteful_folders')
+      .select('*')
+      .where('id', parseInt(folder_id, 10))
+      .first()
   },
 
-  updateFolder(knex,id,newFolderFields){
-    return knex('folders')
-      .where({id})
-      .update(newFolderFields);
+  deleteFolder(knex, folder_id) {
+    console.log('folder_id', folder_id)
+    return knex('noteful_folders')
+      .where({ folder_id })
+      .delete()
+  },
+
+  updateFolder(knex, id, newFolderFields) {
+    return knex('noteful_folders')
+      .where({ id })
+      .update(newFolderFields)
   }
-};
+}
 
-module.exports=FoldersService;
+module.exports = FoldersService
