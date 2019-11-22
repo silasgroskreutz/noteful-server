@@ -1,3 +1,5 @@
+**Note to self, do not use this base. Between checkpoints and deploys, the structure and config files are out of order and messed up. Only here if I still need to reference something. **
+
 # Express Boilerplate!
 
 This is a boilerplate project used for starting new projects!
